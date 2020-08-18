@@ -75,6 +75,7 @@ class StopsOverlay extends MapLayer {
 
     return (
       <FeatureGroup>
+        {/* <ZoomBasedMarkers entities={stops} symbols={symbols} zoom={zoom} {...others} /> */}
         <ZoomBasedMarkers entities={stops} symbols={symbols} zoom={zoom} />
       </FeatureGroup>
     );
@@ -97,7 +98,12 @@ StopsOverlay.propTypes = {
   /**
    * A list of symbol definitions for the stops to be rendered at which zoom.
    */
-  symbols: PropTypes.arrayOf(utils.types.zoomBasedSymbolType).isRequired
+  symbols: PropTypes.arrayOf(utils.types.zoomBasedSymbolType).isRequired,
+  /**
+   * The List of Agencies (Ids and Names) to be used for Agency name in the popup.
+   */
+  /* eslint-disable-next-line react/forbid-prop-types */
+  agencies: PropTypes.any
 };
 
 export default withLeaflet(StopsOverlay);

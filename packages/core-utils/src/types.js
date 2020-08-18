@@ -335,6 +335,8 @@ export const itineraryType = PropTypes.shape({
   walkTime: PropTypes.number.isRequired
 });
 
+// export const agencyType = PropTypes.objectOf(PropTypes.any());
+
 /**
  * Used to model a location that is used in planning a trip.
  */

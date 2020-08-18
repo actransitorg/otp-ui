@@ -32,9 +32,16 @@ export default class StopMarker extends Component {
   }
 
   render() {
-    const { languageConfig, leafletPath, radius, stop } = this.props;
+    const { languageConfig, leafletPath, radius, stop, agencies } = this.props;
     const { id, name, lat, lon } = stop;
     const idArr = id.split(":");
+    let agencyAnchor = null;
+    // console.log("stop-marker",agencies);
+    if (agencies && agencies !== undefined && agencies[idArr[0]]) {
+      agencyAnchor = (
+        <a href={agencies[idArr[0]].url}>{agencies[idArr[0]].name}</a>
+      );
+    }
 
     return (
       <CircleMarker
@@ -47,7 +54,8 @@ export default class StopMarker extends Component {
           <BaseMapStyled.MapOverlayPopup>
             <BaseMapStyled.PopupTitle>{name}</BaseMapStyled.PopupTitle>
             <BaseMapStyled.PopupRow>
-              <b>Agency:</b> {idArr[0]}
+              {/* <b>Agency:</b> {idArr[0]} */}
+              <b>Agency:</b> {agencyAnchor}({idArr[0]})
             </BaseMapStyled.PopupRow>
             <BaseMapStyled.PopupRow>
               <span>
@@ -79,7 +87,9 @@ StopMarker.propTypes = {
   radius: PropTypes.number,
   setLocation: PropTypes.func.isRequired,
   setViewedStop: PropTypes.func.isRequired,
-  stop: stopLayerStopType.isRequired
+  stop: stopLayerStopType.isRequired,
+  /* eslint-disable-next-line react/forbid-prop-types */
+  agencies: PropTypes.any
 };
 
 StopMarker.defaultProps = {
@@ -89,5 +99,6 @@ StopMarker.defaultProps = {
     fillOpacity: 1,
     weight: 1
   },
-  radius: 5
+  radius: 5,
+  agencies: {}
 };

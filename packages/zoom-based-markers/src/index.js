@@ -63,6 +63,7 @@ const ZoomBasedMarkers = ({ entities, symbols, symbolTransform, zoom }) => {
     // hence the null checks before the return statements below.
 
     if (symbolByType && getType) {
+      // console.log("EntitySymbol is returned.");
       return entities.map(entity => {
         const EntitySymbol = symbolByType[getType(entity)] || DefaultSymbol;
         return (
@@ -74,7 +75,9 @@ const ZoomBasedMarkers = ({ entities, symbols, symbolTransform, zoom }) => {
     }
 
     if (DefaultSymbol) {
+      // console.log("DefaultSymbol is returned.", others);
       return entities.map(entity => (
+        // <DefaultSymbol entity={entity} key={entity.id} zoom={zoom} {...others}/>
         <DefaultSymbol entity={entity} key={entity.id} zoom={zoom} />
       ));
     }
