@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { LayersControl, Map, Popup, TileLayer } from "react-leaflet";
+import { LayersControl, Map, Popup } from "react-leaflet";
 import utils from "@opentripplanner/core-utils";
 import L from "leaflet";
+import MapBoxGLLayer from "./mapbox-gl-layer";
 
 import callIfValid from "./util";
 
@@ -194,7 +195,8 @@ class BaseMap extends Component {
                     // if the tiles cannot be loaded for any reason.
                   }
                   {layer.retina ? (
-                    <TileLayer
+                    <MapBoxGLLayer
+                      style={layer.url}
                       url={layer.url}
                       attribution={layer.attribution}
                       retina={layer.retina}
@@ -204,12 +206,28 @@ class BaseMap extends Component {
                       detectRetina={layer.detectRetina}
                     />
                   ) : (
-                    <TileLayer
+                    // <TileLayer
+                    //   url={layer.url}
+                    //   attribution={layer.attribution}
+                    //   retina={layer.retina}
+                    //   maxZoom={layer.maxZoom}
+                    //   tileSize={512}
+                    //   zoomOffset={-1}
+                    //   detectRetina={layer.detectRetina}
+                    // />
+                    <MapBoxGLLayer
+                      style={layer.url}
                       url={layer.url}
                       attribution={layer.attribution}
                       maxZoom={layer.maxZoom}
                       detectRetina={layer.detectRetina}
                     />
+                    // <TileLayer
+                    //   url={layer.url}
+                    //   attribution={layer.attribution}
+                    //   maxZoom={layer.maxZoom}
+                    //   detectRetina={layer.detectRetina}
+                    // />
                   )}
                 </LayersControl.BaseLayer>
               );

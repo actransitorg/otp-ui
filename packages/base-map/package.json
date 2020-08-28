@@ -8,6 +8,8 @@
   "main": "lib/index.js",
   "private": false,
   "dependencies": {
+    "mapbox-gl": "^1.11.1",
+    "mapbox-gl-leaflet": "^0.0.12",
     "@opentripplanner/core-utils": "^2.1.0",
     "prop-types": "^15.7.2"
   },
